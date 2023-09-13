@@ -1,0 +1,15 @@
+{
+  "name": "push-notifications-local",
+  "version": "1.0.0",
+  "description": "A playground for testing Push Notification API",
+  "scripts": {
+    "start": "http-server"
+  },
+  "keywords": [
+    "push-notifications",
+    "notifications",
+    "javascript"
+  ],
+  "author": "Daniel Zotti",
+  "license": "ISC"
+}

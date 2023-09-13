@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Push Notifications Local</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="./styles.css"/>
+</head>
+<body>
+
+<h1>Push Notification Local</h1>
+
+<button id="request-btn">Enable notifications</button>
+<p id="permission-text"></p>
+
+<button id="notification-btn" style="display:none;">Show local notification</button>
+
+<hr/>
+
+<h2>Steps</h2>
+<ol>
+    <li>Check if browser supports these features: serviceWorker, PushManager and Notification</li>
+    <li>Register the service worker (<code>sw.js</code>)</li>
+    <li>Ask for notification permissions
+        <ul>
+            <li>(USER: if you already denied/granted the permissions you can reset or change permissions in the browser settings and click "Enable notifications" to be asked again)</li>
+        </ul>
+    </li>
+    <li>
+        USER: Click to "show local notification" in order to make a notification appear. You can choose between these actions:
+        <ul>
+            <li>Close notification</li>
+            <li>Click on notification content</li>
+            <li>Click on notification actions (OK or CANCEL)</li>
+        </ul>
+    </li>
+    <li>USER: Change tab or application and check if a "come back" notification appears.
+        <ul>
+            <li>If you click on the notification content you'll be redirected to the website again</li>
+        </ul>
+    </li>
+</ol>
+
+<h2>Messages</h2>
+<ul id="messages"></ul>
+
+<script src="index.js"></script>
+</body>
+</html>
