@@ -9,3 +9,4 @@ A simple project for playing with "Push Notification" API (client side only!)
 # Thanks to
 - [new Notification(...) is deprecated](https://jameshfisher.com/2017/09/12/notification-api-deprecated/)
 - [Push Notification Handling Messages](https://web.dev/push-notifications-handling-messages/)
+- [An Introduction to Web Push Notifications](https://itnext.io/an-introduction-to-web-push-notifications-a701783917ce)

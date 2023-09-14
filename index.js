@@ -31,16 +31,12 @@ function check() {
         messages$.innerHTML += `<li>No Service Worker support</li>`;
         throw new Error('[index.js] No Service Worker support')
     }
-    if (!('PushManager' in window)) {
-        messages$.innerHTML += `<li>No Push API support</li>`;
-        throw new Error('[index.js] No Push API Support')
-    }
     if (!("Notification" in window)) {
         messages$.innerHTML += `<li>No Notification support</li>`;
         throw new Error('[index.js] No Notification support')
     }
 
-    messages$.innerHTML += `<li>serviceWorker, Notification and PushManager are correctly supported by this browser</li>`;
+    messages$.innerHTML += `<li>Service Workers and, Notifications are correctly supported by this browser</li>`;
 
     if (Notification.permission === 'granted') {
         notificationButton$.style.display = 'initial';
@@ -57,8 +53,21 @@ function registerSw() {
     });
 }
 
+
+
+Notification.requestPermission().then((permission) => {
+    if (permission === "granted") {
+        // Browser CAN send notifications
+    }
+    else if (permission === "denied") {
+        // Browser CANNOT send notifications
+    }
+    else if(permission === "default") {
+         // User has closed the popup, we can ask for permissions again if we want!
+    }
+});
+
 function requestPermissions() {
-    // It doesn't work without user interaction!
     Notification.requestPermission().then((permission) => {
         permissionText$.innerHTML = "Notification permission: " + permission;
         if (permission === "granted") {
@@ -122,6 +131,7 @@ function activateIdleNotifications() {
                     },
                     timestamp: Date.now(),
                     renotify: false, // default
+                    silent: true
                 });
 
                 registration.addEventListener('close', (e) => {
@@ -146,6 +156,7 @@ function activateIdleNotifications() {
                 },
                 timestamp: Date.now(),
                 renotify: false, // default
+                silent: true
             });
             comeBackNotification.addEventListener('close', (e) => {
                 console.log("[index.js] Notification CLOSED!", e.target.data)
