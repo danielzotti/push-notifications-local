@@ -8,6 +8,7 @@ self.addEventListener('notificationclick', (event) => {
     event.notification.close();
 
     event.waitUntil(
+        // See https://web.dev/push-notifications-handling-messages/#wait-until
         clients
             .matchAll({
                 includeUncontrolled: true, // See: https://stackoverflow.com/questions/35100759/serviceworkers-focus-tab-clients-is-empty-on-notificationclick
@@ -35,13 +36,14 @@ self.addEventListener('notificationclick', (event) => {
 });
 
 self.addEventListener('notificationclose', (event) => {
-    console.log(`[ServiceWorker] Notification CLOSED! ${event.notification.title}`)
+    console.log(`[ServiceWorker] Notification CLOSED! ${event.notification.title}`);
 });
 
 self.addEventListener('push', function (event) {
     if (event.data) {
-        self.registration.showNotification("Push Notification", {body: event.data.text()});
+        const promiseChain = self.registration.showNotification("Push Notification", {body: event.data.text()});
+        event.waitUntil(promiseChain)
     } else {
-        console.log('[ServiceWorker] Push event but no data')
+        console.log('[ServiceWorker] Push event but no data to show')
     }
 })

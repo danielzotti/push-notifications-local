@@ -16,3 +16,10 @@ button:hover {
     background: #005091;
     transition: background .2s ease-in-out;
 }
+
+ul {
+    margin-bottom: 30px;
+}
+li {
+    margin-bottom: 10px;
+}
