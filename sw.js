@@ -25,8 +25,6 @@ self.addEventListener('notificationclick', (event) => {
                         return client.focus();
                     }
                 }
-                console.log(clientList);
-                debugger;
                 if (clients.openWindow) {
                     console.log("[ServiceWorker] webpage is close, let's opening it...")
                     return clients.openWindow("/");
